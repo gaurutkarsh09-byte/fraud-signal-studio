@@ -1,5 +1,27 @@
 [
   {
+    "id": "REQ-006",
+    "question": "hello",
+    "area": "Policy Issuance/Application",
+    "areaOthers": "",
+    "eventConcerning": "",
+    "timingThreshold": "",
+    "riskContent": "",
+    "desiredOutput": "Flag",
+    "additionalDetails": "",
+    "contactName": "utkarsh gaur",
+    "contactEmail": "Utkarsh.Gaur@exlservice.com",
+    "status": "Approved",
+    "submittedAt": "2026-05-28T08:06:44.938Z",
+    "llmOutput": "",
+    "emailDraft": {
+      "from": "fraud-signal-portal@company.com",
+      "to": "ba-review-team@company.com",
+      "subject": "[APPROVED] Fraud Signal Proposal - REQ-006",
+      "body": "Hi Business Analyst Team,\n\nA new Fraud Signal request has been submitted for review:\n\n- Request ID: REQ-006\n- Contact Person: utkarsh gaur (Utkarsh.Gaur@exlservice.com)\n- Area: Policy Issuance/Application \n- Business Question: hello\n- Event Concerning: \n- Timing/Threshold: \n- Risk Content: \n- Desired Output: Flag\n- Additional Details: N/A\n\n==================================================\nMICROSOFT FABRIC DATA AGENT TECHNICAL SPECIFICATION\n==================================================\nNo technical specification generated.\n\nPlease review and publish this signal configuration to staging.\n"
+    }
+  },
+  {
     "id": "REQ-005",
     "question": "signal",
     "area": "Policy Issuance/Application",
@@ -101,7 +123,7 @@
     "contactEmail": "jane.doe@company.com",
     "status": "Under Review",
     "submittedAt": "2026-05-25T10:00:00Z",
-    "llmOutput": "### Microsoft Fabric Data Agent Technical Specification\r\r\n\r\r\n#### 1. Recommended Data Mapping\r\r\n* **Primary Target Table**: `factpartynamedata`\r\r\n\r\r\n#### 2. SQL Implementation (Lakehouse Query)\r\r\n```sql\r\r\nSELECT pb.PolicyID, pb.BeneficiaryID, pb.ChangeDate\r\r\nFROM factpartynamedata pb\r\r\nJOIN factpolicycontractdata p ON pb.PolicyID = p.PolicyID\r\r\nWHERE DATEDIFF(day, p.IssueDate, pb.ChangeDate) <= 30;\r\r\n```\r\r\n",
+    "llmOutput": "### Microsoft Fabric Data Agent Technical Specification\r\r\r\n\r\r\r\n#### 1. Recommended Data Mapping\r\r\r\n* **Primary Target Table**: `factpartynamedata`\r\r\r\n\r\r\r\n#### 2. SQL Implementation (Lakehouse Query)\r\r\r\n```sql\r\r\r\nSELECT pb.PolicyID, pb.BeneficiaryID, pb.ChangeDate\r\r\r\nFROM factpartynamedata pb\r\r\r\nJOIN factpolicycontractdata p ON pb.PolicyID = p.PolicyID\r\r\r\nWHERE DATEDIFF(day, p.IssueDate, pb.ChangeDate) <= 30;\r\r\r\n```\r\r\r\n",
     "emailDraft": {
       "from": "fraud-signal-portal@company.com",
       "to": "ba-review-team@company.com",

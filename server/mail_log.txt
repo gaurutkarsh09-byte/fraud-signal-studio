@@ -111,3 +111,31 @@ No technical specification generated.
 Please review and publish this signal configuration to staging.
 
 ========================================
+
+========================================
+DATE: 2026-05-28T08:06:45.180Z
+TO: ba-review-team@company.com
+SUBJECT: [REVIEW REQUIRED] New Fraud Signal Proposal - REQ-006
+
+Hi Business Analyst Team,
+
+A new Fraud Signal request has been submitted for review:
+
+- Request ID: REQ-006
+- Contact Person: utkarsh gaur (Utkarsh.Gaur@exlservice.com)
+- Area: Policy Issuance/Application 
+- Business Question: hello
+- Event Concerning: 
+- Timing/Threshold: 
+- Risk Content: 
+- Desired Output: Flag
+- Additional Details: N/A
+
+==================================================
+MICROSOFT FABRIC DATA AGENT TECHNICAL SPECIFICATION
+==================================================
+No technical specification generated.
+
+Please review and publish this signal configuration to staging.
+
+========================================
