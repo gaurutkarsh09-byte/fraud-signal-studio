@@ -39,6 +39,9 @@ const SignalIntake = ({ formData, setFormData, llmOutput, setLlmOutput }) => {
     if (formData.area === 'Others' && !formData.areaOthers.trim()) {
       newErrors.areaOthers = 'Please specify the custom Policy/Transaction Area.';
     }
+    if (formData.desiredOutput === 'Fixed Category' && (!formData.fixedCategories || !formData.fixedCategories.trim())) {
+      newErrors.fixedCategories = 'Categories list is required for Fixed Category output.';
+    }
     if (!formData.riskContent.trim()) newErrors.riskContent = 'Risk Content is required to analyze the threat model.';
     
     setErrors(newErrors);
@@ -50,6 +53,9 @@ const SignalIntake = ({ formData, setFormData, llmOutput, setLlmOutput }) => {
     if (!formData.question.trim()) newErrors.question = 'Business Question is required.';
     if (formData.area === 'Others' && !formData.areaOthers.trim()) {
       newErrors.areaOthers = 'Please specify the custom Area.';
+    }
+    if (formData.desiredOutput === 'Fixed Category' && (!formData.fixedCategories || !formData.fixedCategories.trim())) {
+      newErrors.fixedCategories = 'Categories list is required for Fixed Category output.';
     }
     if (!formData.contactName.trim()) newErrors.contactName = 'Contact Person Name is required.';
     if (!formData.contactEmail.trim()) {
@@ -116,7 +122,8 @@ const SignalIntake = ({ formData, setFormData, llmOutput, setLlmOutput }) => {
           eventConcerning: '',
           timingThreshold: '',
           riskContent: '',
-          desiredOutput: 'Flag',
+          desiredOutput: 'Binary',
+          fixedCategories: '',
           additionalDetails: '',
           contactName: '',
           contactEmail: ''
@@ -441,7 +448,7 @@ const SignalIntake = ({ formData, setFormData, llmOutput, setLlmOutput }) => {
             </div>
 
             {/* Output Desired & Add details */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '1.5rem' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: formData.desiredOutput === 'Fixed Category' ? '1fr 1fr 2fr' : '1fr 2fr', gap: '1.5rem' }}>
               <div>
                 <label className="form-label" style={{ fontWeight: 600, color: 'var(--text-main)', display: 'block', marginBottom: '6px' }}>
                   Desired Output Format
@@ -453,12 +460,33 @@ const SignalIntake = ({ formData, setFormData, llmOutput, setLlmOutput }) => {
                   onChange={handleChange}
                   style={{ width: '100%' }}
                 >
-                  <option value="Flag">Flag (0/1)</option>
-                  <option value="Count">Aggregation (Count)</option>
-                  <option value="Alert">Alert (Warning Info)</option>
-                  <option value="Rate">Rate/Percentage</option>
+                  <option value="Binary">Binary</option>
+                  <option value="Numeric">Numeric</option>
+                  <option value="String">String</option>
+                  <option value="Fixed Category">Fixed Category</option>
                 </select>
               </div>
+
+              {formData.desiredOutput === 'Fixed Category' && (
+                <div>
+                  <label className="form-label" style={{ fontWeight: 600, color: 'var(--text-main)', display: 'block', marginBottom: '6px' }}>
+                    Categories (comma-separated) *
+                  </label>
+                  <input 
+                    type="text" 
+                    name="fixedCategories"
+                    className="form-input" 
+                    value={formData.fixedCategories || ''}
+                    onChange={handleChange}
+                    placeholder="e.g. Low, Medium, High"
+                    style={{ 
+                      width: '100%',
+                      borderColor: errors.fixedCategories ? '#ef4444' : 'var(--border-color)'
+                    }}
+                  />
+                  {errors.fixedCategories && <span style={{ fontSize: '0.75rem', color: '#ef4444', marginTop: '4px', display: 'block' }}>{errors.fixedCategories}</span>}
+                </div>
+              )}
 
               <div>
                 <label className="form-label" style={{ fontWeight: 600, color: 'var(--text-main)', display: 'block', marginBottom: '6px' }}>

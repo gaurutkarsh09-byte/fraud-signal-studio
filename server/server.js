@@ -350,7 +350,7 @@ const saveRequestsToExcel = () => {
       EventConcerning: r.eventConcerning,
       TimingThreshold: r.timingThreshold,
       RiskContent: r.riskContent,
-      DesiredOutput: r.desiredOutput,
+      DesiredOutput: r.desiredOutput === 'Fixed Category' ? `Fixed Category: ${r.fixedCategories || ''}` : r.desiredOutput,
       AdditionalDetails: r.additionalDetails,
       ContactName: r.contactName,
       ContactEmail: r.contactEmail,
@@ -423,6 +423,14 @@ const readRequestsFromExcel = () => {
         }
       }
 
+      // Reconstruct desiredOutput and fixedCategories from "DesiredOutput" column
+      let desiredOutput = r.DesiredOutput || '';
+      let fixedCategories = '';
+      if (desiredOutput.startsWith('Fixed Category: ')) {
+        fixedCategories = desiredOutput.replace('Fixed Category: ', '');
+        desiredOutput = 'Fixed Category';
+      }
+
       // Automatically generate or update the email draft with the Excel-defined status
       const status = r.Status || 'Pending Review';
       let emailDraft = existing.emailDraft;
@@ -446,7 +454,8 @@ const readRequestsFromExcel = () => {
         eventConcerning: r.EventConcerning || '',
         timingThreshold: r.TimingThreshold || '',
         riskContent: r.RiskContent || '',
-        desiredOutput: r.DesiredOutput || '',
+        desiredOutput: desiredOutput,
+        fixedCategories: fixedCategories,
         additionalDetails: r.AdditionalDetails || '',
         contactName: r.ContactName || '',
         contactEmail: r.ContactEmail || '',
@@ -521,7 +530,7 @@ WHERE DATEDIFF(day, p.IssueDate, pb.ChangeDate) <= 30;
 });
 
 app.post('/api/generate-llm', (req, res) => {
-  const { question, area, areaOthers, eventConcerning, timingThreshold, riskContent, desiredOutput, additionalDetails } = req.body;
+  const { question, area, areaOthers, eventConcerning, timingThreshold, riskContent, desiredOutput, fixedCategories, additionalDetails } = req.body;
   
   const promptText = `You are helping a Fraud Marker Studio application. Create a production-oriented fraud marker technical specification using ONLY the configured Fabric Data Agent tables and metadata tables.
 
@@ -554,7 +563,7 @@ Policy/Transaction Area: ${area || ''} ${area === 'Others' ? `(${areaOthers || '
 Event Concerning: ${eventConcerning || ''}
 Timing/Threshold: ${timingThreshold || ''}
 Risk Content: ${riskContent || ''}
-Desired Output: ${desiredOutput || ''}
+Desired Output: ${desiredOutput || ''} ${desiredOutput === 'Fixed Category' ? `(Categories: ${fixedCategories || ''})` : ''}
 Additional Details: ${additionalDetails || ''}`;
 
   console.log('[Fabric Bridge] Invoking fabric_helper.py...');

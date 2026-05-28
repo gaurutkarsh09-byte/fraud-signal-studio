@@ -273,7 +273,6 @@ function App() {
   });
   const [currentUser, setCurrentUser] = useState('System');
 
-  // Persisted state for Signal Intake Form & LLM output (resolves state reset glitch)
   const [intakeFormData, setIntakeFormData] = useState({
     question: '',
     area: 'Policy Issuance/Application',
@@ -281,7 +280,8 @@ function App() {
     eventConcerning: '',
     timingThreshold: '',
     riskContent: '',
-    desiredOutput: 'Flag',
+    desiredOutput: 'Binary',
+    fixedCategories: '',
     additionalDetails: '',
     contactName: '',
     contactEmail: ''

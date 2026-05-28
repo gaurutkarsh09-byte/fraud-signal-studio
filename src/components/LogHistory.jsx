@@ -420,7 +420,7 @@ const LogHistory = () => {
                           <div style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)', marginBottom: '4px', textTransform: 'uppercase' }}>Output Requirements</div>
                           <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
                             <span style={{ fontSize: '0.85rem', color: 'var(--text-main)' }}>
-                              <strong>Format:</strong> {req.desiredOutput}
+                              <strong>Format:</strong> {req.desiredOutput === 'Fixed Category' && req.fixedCategories ? `Fixed Category (${req.fixedCategories})` : req.desiredOutput}
                             </span>
                             <span style={{ fontSize: '0.85rem', color: 'var(--text-main)' }}>
                               <strong>Details:</strong> {req.additionalDetails || 'None'}
