@@ -1,0 +1,113 @@
+
+
+========================================
+DATE: 2026-05-27T07:14:16.117Z
+TO: ba-review-team@company.com
+SUBJECT: [REVIEW REQUIRED] New Fraud Signal Proposal - REQ-002
+
+Hi Business Analyst Team,
+
+A new Fraud Signal request has been submitted for review:
+
+- Request ID: REQ-002
+- Contact Person: utkarsh gaur (Utkarsh.Gaur@exlservice.com)
+- Area: Agent Activity 
+- Business Question: Can we find situations where an agent is selling policies in a state or region where they aren’t authorized or usually licensed to do business? I want to see any cases where the agent’s home region is different from where the policy was sold. can we get the logic for this question ?
+- Event Concerning: 
+- Timing/Threshold: 
+- Risk Content: agent selling in different region
+- Desired Output: Flag
+- Additional Details: N/A
+
+==================================================
+MICROSOFT FABRIC DATA AGENT TECHNICAL SPECIFICATION
+==================================================
+No technical specification generated.
+
+Please review and publish this signal configuration to staging.
+
+========================================
+
+========================================
+DATE: 2026-05-27T15:51:18.690Z
+TO: ba-review-team@company.com
+SUBJECT: [REVIEW REQUIRED] New Fraud Signal Proposal - REQ-003
+
+Hi Business Analyst Team,
+
+A new Fraud Signal request has been submitted for review:
+
+- Request ID: REQ-003
+- Contact Person: utkarsh  (utkarsh@xyz.com)
+- Area: Agent Activity 
+- Business Question: i need a agent region mismatch flag
+- Event Concerning: 
+- Timing/Threshold: 
+- Risk Content: agent region mismatch activity
+- Desired Output: Flag
+- Additional Details: N/A
+
+==================================================
+MICROSOFT FABRIC DATA AGENT TECHNICAL SPECIFICATION
+==================================================
+No technical specification generated.
+
+Please review and publish this signal configuration to staging.
+
+========================================
+
+========================================
+DATE: 2026-05-28T05:34:42.640Z
+TO: ba-review-team@company.com
+SUBJECT: [REVIEW REQUIRED] New Fraud Signal Proposal - REQ-004
+
+Hi Business Analyst Team,
+
+A new Fraud Signal request has been submitted for review:
+
+- Request ID: REQ-004
+- Contact Person: utkarsh (utkarsh@gmail.com)
+- Area: Policy Issuance/Application 
+- Business Question: need to create a signal
+- Event Concerning: 
+- Timing/Threshold: 
+- Risk Content: signal
+- Desired Output: Flag
+- Additional Details: N/A
+
+==================================================
+MICROSOFT FABRIC DATA AGENT TECHNICAL SPECIFICATION
+==================================================
+No technical specification generated.
+
+Please review and publish this signal configuration to staging.
+
+========================================
+
+========================================
+DATE: 2026-05-28T05:36:13.211Z
+TO: ba-review-team@company.com
+SUBJECT: [REVIEW REQUIRED] New Fraud Signal Proposal - REQ-005
+
+Hi Business Analyst Team,
+
+A new Fraud Signal request has been submitted for review:
+
+- Request ID: REQ-005
+- Contact Person: utkarsh (utkarsh@gmail.com)
+- Area: Policy Issuance/Application 
+- Business Question: signal
+- Event Concerning: 
+- Timing/Threshold: 
+- Risk Content: 
+- Desired Output: Flag
+- Additional Details: N/A
+
+==================================================
+MICROSOFT FABRIC DATA AGENT TECHNICAL SPECIFICATION
+==================================================
+No technical specification generated.
+
+Please review and publish this signal configuration to staging.
+
+========================================

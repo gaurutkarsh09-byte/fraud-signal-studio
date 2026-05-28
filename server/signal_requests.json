@@ -1,0 +1,112 @@
+[
+  {
+    "id": "REQ-005",
+    "question": "signal",
+    "area": "Policy Issuance/Application",
+    "areaOthers": "",
+    "eventConcerning": "",
+    "timingThreshold": "",
+    "riskContent": "",
+    "desiredOutput": "Flag",
+    "additionalDetails": "",
+    "contactName": "utkarsh",
+    "contactEmail": "utkarsh@gmail.com",
+    "status": "Under Review",
+    "submittedAt": "2026-05-28T05:36:13.150Z",
+    "llmOutput": "",
+    "emailDraft": {
+      "from": "fraud-signal-portal@company.com",
+      "to": "ba-review-team@company.com",
+      "subject": "[UNDER REVIEW] Fraud Signal Proposal - REQ-005",
+      "body": "Hi Business Analyst Team,\n\nA new Fraud Signal request has been submitted for review:\n\n- Request ID: REQ-005\n- Contact Person: utkarsh (utkarsh@gmail.com)\n- Area: Policy Issuance/Application \n- Business Question: signal\n- Event Concerning: \n- Timing/Threshold: \n- Risk Content: \n- Desired Output: Flag\n- Additional Details: N/A\n\n==================================================\nMICROSOFT FABRIC DATA AGENT TECHNICAL SPECIFICATION\n==================================================\nNo technical specification generated.\n\nPlease review and publish this signal configuration to staging.\n"
+    }
+  },
+  {
+    "id": "REQ-004",
+    "question": "need to create a signal",
+    "area": "Policy Issuance/Application",
+    "areaOthers": "",
+    "eventConcerning": "",
+    "timingThreshold": "",
+    "riskContent": "signal",
+    "desiredOutput": "Flag",
+    "additionalDetails": "",
+    "contactName": "utkarsh",
+    "contactEmail": "utkarsh@gmail.com",
+    "status": "Pending Review",
+    "submittedAt": "2026-05-28T05:34:42.521Z",
+    "llmOutput": "",
+    "emailDraft": {
+      "from": "fraud-signal-portal@company.com",
+      "to": "ba-review-team@company.com",
+      "subject": "[PENDING REVIEW] Fraud Signal Proposal - REQ-004",
+      "body": "Hi Business Analyst Team,\n\nA new Fraud Signal request has been submitted for review:\n\n- Request ID: REQ-004\n- Contact Person: utkarsh (utkarsh@gmail.com)\n- Area: Policy Issuance/Application \n- Business Question: need to create a signal\n- Event Concerning: \n- Timing/Threshold: \n- Risk Content: signal\n- Desired Output: Flag\n- Additional Details: N/A\n\n==================================================\nMICROSOFT FABRIC DATA AGENT TECHNICAL SPECIFICATION\n==================================================\nNo technical specification generated.\n\nPlease review and publish this signal configuration to staging.\n"
+    }
+  },
+  {
+    "id": "REQ-003",
+    "question": "i need a agent region mismatch flag",
+    "area": "Agent Activity",
+    "areaOthers": "",
+    "eventConcerning": "",
+    "timingThreshold": "",
+    "riskContent": "agent region mismatch activity",
+    "desiredOutput": "Flag",
+    "additionalDetails": "",
+    "contactName": "utkarsh ",
+    "contactEmail": "utkarsh@xyz.com",
+    "status": "Approved",
+    "submittedAt": "2026-05-27T15:51:18.614Z",
+    "llmOutput": "",
+    "emailDraft": {
+      "from": "fraud-signal-portal@company.com",
+      "to": "ba-review-team@company.com",
+      "subject": "[APPROVED] Fraud Signal Proposal - REQ-003",
+      "body": "Hi Business Analyst Team,\n\nA new Fraud Signal request has been submitted for review:\n\n- Request ID: REQ-003\n- Contact Person: utkarsh  (utkarsh@xyz.com)\n- Area: Agent Activity \n- Business Question: i need a agent region mismatch flag\n- Event Concerning: \n- Timing/Threshold: \n- Risk Content: agent region mismatch activity\n- Desired Output: Flag\n- Additional Details: N/A\n\n==================================================\nMICROSOFT FABRIC DATA AGENT TECHNICAL SPECIFICATION\n==================================================\nNo technical specification generated.\n\nPlease review and publish this signal configuration to staging.\n"
+    }
+  },
+  {
+    "id": "REQ-002",
+    "question": "Can we find situations where an agent is selling policies in a state or region where they aren’t authorized or usually licensed to do business? I want to see any cases where the agent’s home region is different from where the policy was sold. can we get the logic for this question ?",
+    "area": "Agent Activity",
+    "areaOthers": "",
+    "eventConcerning": "",
+    "timingThreshold": "",
+    "riskContent": "agent selling in different region",
+    "desiredOutput": "Flag",
+    "additionalDetails": "",
+    "contactName": "utkarsh gaur",
+    "contactEmail": "Utkarsh.Gaur@exlservice.com",
+    "status": "Pending Review",
+    "submittedAt": "2026-05-27T07:14:15.786Z",
+    "llmOutput": "",
+    "emailDraft": {
+      "from": "fraud-signal-portal@company.com",
+      "to": "ba-review-team@company.com",
+      "subject": "[PENDING REVIEW] Fraud Signal Proposal - REQ-002",
+      "body": "Hi Business Analyst Team,\n\nA new Fraud Signal request has been submitted for review:\n\n- Request ID: REQ-002\n- Contact Person: utkarsh gaur (Utkarsh.Gaur@exlservice.com)\n- Area: Agent Activity \n- Business Question: Can we find situations where an agent is selling policies in a state or region where they aren’t authorized or usually licensed to do business? I want to see any cases where the agent’s home region is different from where the policy was sold. can we get the logic for this question ?\n- Event Concerning: \n- Timing/Threshold: \n- Risk Content: agent selling in different region\n- Desired Output: Flag\n- Additional Details: N/A\n\n==================================================\nMICROSOFT FABRIC DATA AGENT TECHNICAL SPECIFICATION\n==================================================\nNo technical specification generated.\n\nPlease review and publish this signal configuration to staging.\n"
+    }
+  },
+  {
+    "id": "REQ-001",
+    "question": "Detect instances where claim payments are routed to a duplicate bank routing or account number within a tight period.",
+    "area": "Claims/Benefits",
+    "areaOthers": "",
+    "eventConcerning": "Payment routing or beneficiary change activity",
+    "timingThreshold": "Within 30 days of claims submission",
+    "riskContent": "Agents or bad actors setting up duplicate payouts to route money to the same account.",
+    "desiredOutput": "Alert",
+    "additionalDetails": "High priority query.",
+    "contactName": "Jane Doe",
+    "contactEmail": "jane.doe@company.com",
+    "status": "Under Review",
+    "submittedAt": "2026-05-25T10:00:00Z",
+    "llmOutput": "### Microsoft Fabric Data Agent Technical Specification\r\r\n\r\r\n#### 1. Recommended Data Mapping\r\r\n* **Primary Target Table**: `factpartynamedata`\r\r\n\r\r\n#### 2. SQL Implementation (Lakehouse Query)\r\r\n```sql\r\r\nSELECT pb.PolicyID, pb.BeneficiaryID, pb.ChangeDate\r\r\nFROM factpartynamedata pb\r\r\nJOIN factpolicycontractdata p ON pb.PolicyID = p.PolicyID\r\r\nWHERE DATEDIFF(day, p.IssueDate, pb.ChangeDate) <= 30;\r\r\n```\r\r\n",
+    "emailDraft": {
+      "from": "fraud-signal-portal@company.com",
+      "to": "ba-review-team@company.com",
+      "subject": "[UNDER REVIEW] Fraud Signal Proposal - REQ-001",
+      "body": "Hi Business Analyst Team,\n\nA new Fraud Signal request is marked as Under Review:\n\n- Request ID: REQ-001\n- Contact Person: Jane Doe\n- Area: Claims/Benefits\n- Business Question: Detect instances where claim payments are routed to a duplicate bank routing or account number within a tight period.\n- Status: Under Review"
+    }
+  }
+]

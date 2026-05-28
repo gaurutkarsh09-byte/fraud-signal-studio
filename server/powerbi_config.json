@@ -1,0 +1,9 @@
+{
+  "tenantId": "YOUR_AZURE_AD_TENANT_ID",
+  "clientId": "YOUR_AZURE_AD_CLIENT_ID",
+  "clientSecret": "YOUR_AZURE_AD_CLIENT_SECRET",
+  "workspaceId": "YOUR_POWERBI_WORKSPACE_ID",
+  "datasetId": "YOUR_POWERBI_DATASET_ID",
+  "reportId": "YOUR_POWERBI_REPORT_ID",
+  "dataAgentUrl": "YOUR_FABRIC_DATA_AGENT_URL"
+}

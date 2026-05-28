@@ -1,0 +1,14 @@
+# Dependency folders (re-installed via npm install)
+node_modules/
+server/node_modules/
+
+# Production build outputs
+dist/
+
+# Local secrets & environment files
+.env
+server/.env
+
+# OS-specific files
+.DS_Store
+Thumbs.db
