@@ -139,3 +139,156 @@ No technical specification generated.
 Please review and publish this signal configuration to staging.
 
 ========================================
+
+========================================
+DATE: 2026-05-28T10:02:49.320Z
+TO: ba-review-team@company.com
+SUBJECT: [REVIEW REQUIRED] New Fraud Signal Proposal - REQ-007
+
+Hi Business Analyst Team,
+
+A new Fraud Signal request has been submitted for review:
+
+- Request ID: REQ-007
+- Contact Person: hi (hi@gmail.com)
+- Area: Policy Issuance/Application 
+- Business Question: Hi 
+- Event Concerning: 
+- Timing/Threshold: 
+- Risk Content: 
+- Desired Output: Binary
+- Additional Details: N/A
+
+==================================================
+MICROSOFT FABRIC DATA AGENT TECHNICAL SPECIFICATION
+==================================================
+No technical specification generated.
+
+Please review and publish this signal configuration to staging.
+
+========================================
+
+========================================
+DATE: 2026-05-28T10:03:54.375Z
+TO: ba-review-team@company.com
+SUBJECT: [REVIEW REQUIRED] New Fraud Signal Proposal - REQ-008
+
+Hi Business Analyst Team,
+
+A new Fraud Signal request has been submitted for review:
+
+- Request ID: REQ-008
+- Contact Person: hi (hi@gmail.com)
+- Area: Policy Issuance/Application 
+- Business Question: HI 
+- Event Concerning: 
+- Timing/Threshold: 
+- Risk Content: 
+- Desired Output: Binary
+- Additional Details: N/A
+
+==================================================
+MICROSOFT FABRIC DATA AGENT TECHNICAL SPECIFICATION
+==================================================
+No technical specification generated.
+
+Please review and publish this signal configuration to staging.
+
+========================================
+
+========================================
+DATE: 2026-05-29T06:28:47.417Z
+TO: ba-review-team@company.com
+SUBJECT: [REVIEW REQUIRED] New Fraud Signal Proposal - REQ-009
+
+Hi Business Analyst Team,
+
+A new Fraud Signal request has been submitted for review:
+
+- Request ID: REQ-009
+- Contact Person: utkarsh gaur (Utkarsh.Gaur@exlservice.com)
+- Area: Policy Changes/Endorsements 
+- Business Question: I'm concerned about policies where the beneficiaries are changed shortly after the policy starts. Can we track how often beneficiaries get updated within the first few months of a new policy?
+- Event Concerning: 
+- Timing/Threshold: 
+- Risk Content: early benficary
+- Desired Output: Numeric
+- Additional Details: N/A
+
+==================================================
+MICROSOFT FABRIC DATA AGENT TECHNICAL SPECIFICATION
+==================================================
+1. Marker Name
+Early Beneficiary Change Count (First Three Months)
+
+2. Business Objective
+Identify policies where beneficiaries are changed within the first three months of policy inception, which is an early warning signal for potential fraud or policy manipulation.
+
+3. Fraud/Risk Rationale
+Frequent or immediate beneficiary changes shortly after policy issue may indicate actions by individuals seeking to exploit the policy for improper gain (e.g., life insurance fraud, misrepresentation, or internal collusion). Early changes, especially without clear policyholder intent, are recognized fraud risk indicators by SIU and underwriters.
+
+4. Required Tables
+- factpolicybenefitdata (tracks beneficiary details/updates)
+- factpolicycontractdata (records policy issue/start dates)
+- (Metadata tables: meta_column_dictionary and meta_suggested_keys for final column validation)
+
+5. Required Columns
+- factpolicycontractdata.PolicyNumber
+- factpolicycontractdata.PolicyIssueDate (or similar, per metadata confirmation)
+- factpolicybenefitdata.BeneficiaryChangeDate (or equivalent column)
+- factpolicybenefitdata.PolicyNumber
+
+6. Join Logic/Grain
+- Join on PolicyNumber between factpolicycontractdata and factpolicybenefitdata.
+- Grain: Policy-level (one row per PolicyNumber).
+
+7. Marker Logic
+Count all beneficiary changes (distinct change events/records) occurring within 90 days (three months) of the policy’s issue date for each policy.
+
+8. SQL or Pseudo-SQL
+-- Pseudo-SQL: Early Beneficiary Changes in First 3 Months
+SELECT
+  p.PolicyNumber,
+  COUNT(b.BeneficiaryChangeDate) AS BeneficiaryChangeCountFirst3M
+FROM
+  factpolicycontractdata p
+JOIN
+  factpolicybenefitdata b
+    ON p.PolicyNumber = b.PolicyNumber
+WHERE
+  b.BeneficiaryChangeDate >= p.PolicyIssueDate
+  AND b.BeneficiaryChangeDate < DATEADD(DAY, 90, p.PolicyIssueDate)
+GROUP BY
+  p.PolicyNumber
+
+-- Output: PolicyNumber, BeneficiaryChangeCountFirst3M
+
+9. Output Fields
+- PolicyNumber
+- BeneficiaryChangeCountFirst3M (Numeric: # of beneficiary changes within first 90 days of policy)
+
+10. Confidence Score (0-100)
+85
+
+11. Assumptions
+- factpolicybenefitdata captures each beneficiary update event with a clear BeneficiaryChangeDate.
+- PolicyIssueDate is available and reliable in factpolicycontractdata.
+- All relevant updates are accurately recorded in the source system.
+- join on PolicyNumber is unique and valid for each policy.
+
+12. Limitations
+- Does not account for the type (minor vs. major) of beneficiary change; all changes are counted equally.
+- If either required date column is missing or not reliably populated, marker utility drops significantly (requires metadata validation).
+- Policies issued via exceptions may not have aligned start/change dates.
+- If BeneficiaryChangeDate reflects entry/change rather than effective date, counts may be slightly misaligned.
+- Indirect mapping via different product structures (e.g., group vs. individual) may require BA/SME review.
+
+13. BA/SME Review Recommendation
+Recommended for quick wins pilot; confirm with BA/SME that:
+- Chosen BeneficiaryChangeDate and PolicyIssueDate fields align with operational business practice, and that join produces accurate counts.
+- Review if certain policy types or products require exclusion or special handling.
+If metadata verification reveals unclear column choices, escalate for technical clarification before production deployment.
+
+Please review and publish this signal configuration to staging.
+
+========================================

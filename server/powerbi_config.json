@@ -1,9 +1,9 @@
 {
-  "tenantId": "YOUR_AZURE_AD_TENANT_ID",
+  "tenantId": "dafe49bc-5ac3-4310-97b4-3e44a28cbf18",
   "clientId": "YOUR_AZURE_AD_CLIENT_ID",
   "clientSecret": "YOUR_AZURE_AD_CLIENT_SECRET",
-  "workspaceId": "YOUR_POWERBI_WORKSPACE_ID",
-  "datasetId": "YOUR_POWERBI_DATASET_ID",
-  "reportId": "YOUR_POWERBI_REPORT_ID",
+  "workspaceId": "87137cee-0319-4619-b859-57d4e8c60d24",
+  "datasetId": "ab774094-666c-4298-8160-09b69d9cbf76",
+  "reportId": "3f9f9bb2-2c5d-43d3-82b6-e784693815a3",
   "dataAgentUrl": "YOUR_FABRIC_DATA_AGENT_URL"
 }

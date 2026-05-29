@@ -1,5 +1,71 @@
 [
   {
+    "id": "REQ-009",
+    "question": "I'm concerned about policies where the beneficiaries are changed shortly after the policy starts. Can we track how often beneficiaries get updated within the first few months of a new policy?",
+    "area": "Policy Changes/Endorsements",
+    "areaOthers": "",
+    "eventConcerning": "",
+    "timingThreshold": "",
+    "riskContent": "early benficary",
+    "desiredOutput": "Numeric",
+    "additionalDetails": "",
+    "contactName": "utkarsh gaur",
+    "contactEmail": "Utkarsh.Gaur@exlservice.com",
+    "status": "Pending Review",
+    "submittedAt": "2026-05-29T06:28:47.020Z",
+    "llmOutput": "1. Marker Name\r\nEarly Beneficiary Change Count (First Three Months)\r\n\r\n2. Business Objective\r\nIdentify policies where beneficiaries are changed within the first three months of policy inception, which is an early warning signal for potential fraud or policy manipulation.\r\n\r\n3. Fraud/Risk Rationale\r\nFrequent or immediate beneficiary changes shortly after policy issue may indicate actions by individuals seeking to exploit the policy for improper gain (e.g., life insurance fraud, misrepresentation, or internal collusion). Early changes, especially without clear policyholder intent, are recognized fraud risk indicators by SIU and underwriters.\r\n\r\n4. Required Tables\r\n- factpolicybenefitdata (tracks beneficiary details/updates)\r\n- factpolicycontractdata (records policy issue/start dates)\r\n- (Metadata tables: meta_column_dictionary and meta_suggested_keys for final column validation)\r\n\r\n5. Required Columns\r\n- factpolicycontractdata.PolicyNumber\r\n- factpolicycontractdata.PolicyIssueDate (or similar, per metadata confirmation)\r\n- factpolicybenefitdata.BeneficiaryChangeDate (or equivalent column)\r\n- factpolicybenefitdata.PolicyNumber\r\n\r\n6. Join Logic/Grain\r\n- Join on PolicyNumber between factpolicycontractdata and factpolicybenefitdata.\r\n- Grain: Policy-level (one row per PolicyNumber).\r\n\r\n7. Marker Logic\r\nCount all beneficiary changes (distinct change events/records) occurring within 90 days (three months) of the policy’s issue date for each policy.\r\n\r\n8. SQL or Pseudo-SQL\r\n-- Pseudo-SQL: Early Beneficiary Changes in First 3 Months\r\nSELECT\r\n  p.PolicyNumber,\r\n  COUNT(b.BeneficiaryChangeDate) AS BeneficiaryChangeCountFirst3M\r\nFROM\r\n  factpolicycontractdata p\r\nJOIN\r\n  factpolicybenefitdata b\r\n    ON p.PolicyNumber = b.PolicyNumber\r\nWHERE\r\n  b.BeneficiaryChangeDate >= p.PolicyIssueDate\r\n  AND b.BeneficiaryChangeDate < DATEADD(DAY, 90, p.PolicyIssueDate)\r\nGROUP BY\r\n  p.PolicyNumber\r\n\r\n-- Output: PolicyNumber, BeneficiaryChangeCountFirst3M\r\n\r\n9. Output Fields\r\n- PolicyNumber\r\n- BeneficiaryChangeCountFirst3M (Numeric: # of beneficiary changes within first 90 days of policy)\r\n\r\n10. Confidence Score (0-100)\r\n85\r\n\r\n11. Assumptions\r\n- factpolicybenefitdata captures each beneficiary update event with a clear BeneficiaryChangeDate.\r\n- PolicyIssueDate is available and reliable in factpolicycontractdata.\r\n- All relevant updates are accurately recorded in the source system.\r\n- join on PolicyNumber is unique and valid for each policy.\r\n\r\n12. Limitations\r\n- Does not account for the type (minor vs. major) of beneficiary change; all changes are counted equally.\r\n- If either required date column is missing or not reliably populated, marker utility drops significantly (requires metadata validation).\r\n- Policies issued via exceptions may not have aligned start/change dates.\r\n- If BeneficiaryChangeDate reflects entry/change rather than effective date, counts may be slightly misaligned.\r\n- Indirect mapping via different product structures (e.g., group vs. individual) may require BA/SME review.\r\n\r\n13. BA/SME Review Recommendation\r\nRecommended for quick wins pilot; confirm with BA/SME that:\r\n- Chosen BeneficiaryChangeDate and PolicyIssueDate fields align with operational business practice, and that join produces accurate counts.\r\n- Review if certain policy types or products require exclusion or special handling.\r\nIf metadata verification reveals unclear column choices, escalate for technical clarification before production deployment.",
+    "emailDraft": {
+      "from": "fraud-signal-portal@company.com",
+      "to": "ba-review-team@company.com",
+      "subject": "[PENDING REVIEW] Fraud Signal Proposal - REQ-009",
+      "body": "Hi Business Analyst Team,\n\nA new Fraud Signal request has been submitted for review:\n\n- Request ID: REQ-009\n- Contact Person: utkarsh gaur (Utkarsh.Gaur@exlservice.com)\n- Area: Policy Changes/Endorsements \n- Business Question: I'm concerned about policies where the beneficiaries are changed shortly after the policy starts. Can we track how often beneficiaries get updated within the first few months of a new policy?\n- Event Concerning: \n- Timing/Threshold: \n- Risk Content: early benficary\n- Desired Output: Numeric\n- Additional Details: N/A\n\n==================================================\nMICROSOFT FABRIC DATA AGENT TECHNICAL SPECIFICATION\n==================================================\n1. Marker Name\r\nEarly Beneficiary Change Count (First Three Months)\r\n\r\n2. Business Objective\r\nIdentify policies where beneficiaries are changed within the first three months of policy inception, which is an early warning signal for potential fraud or policy manipulation.\r\n\r\n3. Fraud/Risk Rationale\r\nFrequent or immediate beneficiary changes shortly after policy issue may indicate actions by individuals seeking to exploit the policy for improper gain (e.g., life insurance fraud, misrepresentation, or internal collusion). Early changes, especially without clear policyholder intent, are recognized fraud risk indicators by SIU and underwriters.\r\n\r\n4. Required Tables\r\n- factpolicybenefitdata (tracks beneficiary details/updates)\r\n- factpolicycontractdata (records policy issue/start dates)\r\n- (Metadata tables: meta_column_dictionary and meta_suggested_keys for final column validation)\r\n\r\n5. Required Columns\r\n- factpolicycontractdata.PolicyNumber\r\n- factpolicycontractdata.PolicyIssueDate (or similar, per metadata confirmation)\r\n- factpolicybenefitdata.BeneficiaryChangeDate (or equivalent column)\r\n- factpolicybenefitdata.PolicyNumber\r\n\r\n6. Join Logic/Grain\r\n- Join on PolicyNumber between factpolicycontractdata and factpolicybenefitdata.\r\n- Grain: Policy-level (one row per PolicyNumber).\r\n\r\n7. Marker Logic\r\nCount all beneficiary changes (distinct change events/records) occurring within 90 days (three months) of the policy’s issue date for each policy.\r\n\r\n8. SQL or Pseudo-SQL\r\n-- Pseudo-SQL: Early Beneficiary Changes in First 3 Months\r\nSELECT\r\n  p.PolicyNumber,\r\n  COUNT(b.BeneficiaryChangeDate) AS BeneficiaryChangeCountFirst3M\r\nFROM\r\n  factpolicycontractdata p\r\nJOIN\r\n  factpolicybenefitdata b\r\n    ON p.PolicyNumber = b.PolicyNumber\r\nWHERE\r\n  b.BeneficiaryChangeDate >= p.PolicyIssueDate\r\n  AND b.BeneficiaryChangeDate < DATEADD(DAY, 90, p.PolicyIssueDate)\r\nGROUP BY\r\n  p.PolicyNumber\r\n\r\n-- Output: PolicyNumber, BeneficiaryChangeCountFirst3M\r\n\r\n9. Output Fields\r\n- PolicyNumber\r\n- BeneficiaryChangeCountFirst3M (Numeric: # of beneficiary changes within first 90 days of policy)\r\n\r\n10. Confidence Score (0-100)\r\n85\r\n\r\n11. Assumptions\r\n- factpolicybenefitdata captures each beneficiary update event with a clear BeneficiaryChangeDate.\r\n- PolicyIssueDate is available and reliable in factpolicycontractdata.\r\n- All relevant updates are accurately recorded in the source system.\r\n- join on PolicyNumber is unique and valid for each policy.\r\n\r\n12. Limitations\r\n- Does not account for the type (minor vs. major) of beneficiary change; all changes are counted equally.\r\n- If either required date column is missing or not reliably populated, marker utility drops significantly (requires metadata validation).\r\n- Policies issued via exceptions may not have aligned start/change dates.\r\n- If BeneficiaryChangeDate reflects entry/change rather than effective date, counts may be slightly misaligned.\r\n- Indirect mapping via different product structures (e.g., group vs. individual) may require BA/SME review.\r\n\r\n13. BA/SME Review Recommendation\r\nRecommended for quick wins pilot; confirm with BA/SME that:\r\n- Chosen BeneficiaryChangeDate and PolicyIssueDate fields align with operational business practice, and that join produces accurate counts.\r\n- Review if certain policy types or products require exclusion or special handling.\r\nIf metadata verification reveals unclear column choices, escalate for technical clarification before production deployment.\n\nPlease review and publish this signal configuration to staging.\n"
+    }
+  },
+  {
+    "id": "REQ-008",
+    "question": "HI ",
+    "area": "Policy Issuance/Application",
+    "areaOthers": "",
+    "eventConcerning": "",
+    "timingThreshold": "",
+    "riskContent": "",
+    "desiredOutput": "Binary",
+    "additionalDetails": "",
+    "contactName": "hi",
+    "contactEmail": "hi@gmail.com",
+    "status": "Pending Review",
+    "submittedAt": "2026-05-28T10:03:54.283Z",
+    "llmOutput": "",
+    "emailDraft": {
+      "from": "fraud-signal-portal@company.com",
+      "to": "ba-review-team@company.com",
+      "subject": "[PENDING REVIEW] Fraud Signal Proposal - REQ-008",
+      "body": "Hi Business Analyst Team,\n\nA new Fraud Signal request has been submitted for review:\n\n- Request ID: REQ-008\n- Contact Person: hi (hi@gmail.com)\n- Area: Policy Issuance/Application \n- Business Question: HI \n- Event Concerning: \n- Timing/Threshold: \n- Risk Content: \n- Desired Output: Binary\n- Additional Details: N/A\n\n==================================================\nMICROSOFT FABRIC DATA AGENT TECHNICAL SPECIFICATION\n==================================================\nNo technical specification generated.\n\nPlease review and publish this signal configuration to staging.\n"
+    }
+  },
+  {
+    "id": "REQ-007",
+    "question": "Hi ",
+    "area": "Policy Issuance/Application",
+    "areaOthers": "",
+    "eventConcerning": "",
+    "timingThreshold": "",
+    "riskContent": "",
+    "desiredOutput": "Binary",
+    "additionalDetails": "",
+    "contactName": "hi",
+    "contactEmail": "hi@gmail.com",
+    "status": "Pending Review",
+    "submittedAt": "2026-05-28T10:02:49.106Z",
+    "llmOutput": "",
+    "emailDraft": {
+      "from": "fraud-signal-portal@company.com",
+      "to": "ba-review-team@company.com",
+      "subject": "[PENDING REVIEW] Fraud Signal Proposal - REQ-007",
+      "body": "Hi Business Analyst Team,\n\nA new Fraud Signal request has been submitted for review:\n\n- Request ID: REQ-007\n- Contact Person: hi (hi@gmail.com)\n- Area: Policy Issuance/Application \n- Business Question: Hi \n- Event Concerning: \n- Timing/Threshold: \n- Risk Content: \n- Desired Output: Binary\n- Additional Details: N/A\n\n==================================================\nMICROSOFT FABRIC DATA AGENT TECHNICAL SPECIFICATION\n==================================================\nNo technical specification generated.\n\nPlease review and publish this signal configuration to staging.\n"
+    }
+  },
+  {
     "id": "REQ-006",
     "question": "hello",
     "area": "Policy Issuance/Application",
