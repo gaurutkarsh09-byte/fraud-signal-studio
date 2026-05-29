@@ -29,13 +29,20 @@ async function triggerPowerBiRefresh() {
   }
 
   const { tenantId, clientId, clientSecret, workspaceId, datasetId } = config;
+  const personalAccessToken = process.env.POWERBI_PERSONAL_ACCESS_TOKEN || config.personalAccessToken;
 
   // Validate configuration presence
-  if (!tenantId || !clientId || !clientSecret || !workspaceId || !datasetId) {
-    return { success: false, message: 'Incomplete parameters inside powerbi_config.json.' };
+  if (!workspaceId || !datasetId) {
+    return { success: false, message: 'Incomplete workspaceId or datasetId parameters inside powerbi_config.json.' };
   }
 
-  // Check if credentials are still placeholder values
+  // 1. Check if a Personal Access Token is provided and active
+  if (personalAccessToken && personalAccessToken.trim() && !personalAccessToken.includes('YOUR_')) {
+    console.log('[Power BI Refresh] Personal Access Token detected. Triggering refresh directly...');
+    return triggerRefreshApi(workspaceId, datasetId, personalAccessToken.trim());
+  }
+
+  // 2. Check if credentials are still placeholder values
   const hasPlaceholders = 
     tenantId.includes('YOUR_') || 
     clientId.includes('YOUR_') || 
